@@ -19,7 +19,18 @@
   (layout/render request "search.html"))
 
 (defn game-detail-page [request]
-  (layout/render request "game_detail.html" {:game (api/get-game (:query-string request))}))
+  (layout/render request "game_detail.html" {:game (api/get-game (:guid (:params request)))
+                                             :checked-out (api/is-checked-out? (:guid (:params request)))}))
+
+(defn check-out [request]
+  (api/check-out-game (:guid (:params request)))
+  (layout/render request "game_detail.html" {:game (api/get-game (:guid (:params request)))
+                                             :checked-out true}))
+
+(defn check-in [request]
+  (api/check-in-game (:guid (:params request)))
+  (layout/render request "game_detail.html" {:game (api/get-game (:guid (:params request)))
+                                             :checked-out false}))
 
 (defn home-routes []
   [ "" 
@@ -29,5 +40,7 @@
    ["/about" {:get about-page}]
    ["/search" {:get search-page}]
    ["/games_home" {:get game-home-page}]
-   ["/game_detail" {:get game-detail-page}]])
+   ["/game_detail" {:get game-detail-page}]
+   ["/check-out" {:get check-out}]
+   ["/check-in" {:get check-in}]])
 

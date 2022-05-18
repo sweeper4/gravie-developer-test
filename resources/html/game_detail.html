@@ -2,8 +2,17 @@
 {% block content %}
   <div class="center">
     {{game.results.name}}
-    <form 
-    <button type="button" value="Checkout"></button>
+    {% if checked-out %}
+    <form action="check-in">
+      <input type="hidden" name="guid" value="{{game.results.guid}}">
+      <button>Return</button>
+    </form>
+    {% else %}
+    <form action="check-out">
+      <input type="hidden" name="guid" value="{{game.results.guid}}">
+      <button>Checkout</button>
+    </form>
+    {% endif %}
   </div>
   <div class="center">
     <img src="{{game.results.image.small_url}}" class="center">

@@ -5,15 +5,11 @@
   </div>
 
   {% for result in games.results %}
-  <a href="/game_detail?{{result.guid}}">
+  <a href="/game_detail?guid={{result.guid}}">
     <div style="margin-top: 20px;">
       <img src="{{result.image.thumb_url}}" style="height:50px;">
       {{result.name}}
     </div>
   </a>
   {% endfor %}
-
-  <div>
-    {{games.results|json}}
-  </div>
 {% endblock %}
