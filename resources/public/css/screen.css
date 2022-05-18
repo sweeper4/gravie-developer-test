@@ -1,6 +1,6 @@
 html,
 body {
-	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	font-family: 'Helvetica Neue2', Helvetica, Arial, sans-serif;
 }
 @font-face {
   font-family: 'Material Icons';
@@ -33,3 +33,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  text-align: center;
+}

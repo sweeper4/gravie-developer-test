@@ -10,9 +10,18 @@
 
 (defn get-games []
   (json/read-str 
-   (:body @(client/get
-            (str
-             (:url api)
-             "games/?"
-             (:key api)
-             (:options api))))))
+   (:body @(client/get (str
+                        (:url api)
+                        "games/?"
+                        (:key api)
+                        (:options api))))))
+
+(defn get-game [guid]
+  (json/read-str
+   (:body @(client/get (str
+                        (:url api)
+                        "game/"
+                        guid
+                        "/?"
+                        (:key api)
+                        (:options api))))))

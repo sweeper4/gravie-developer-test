@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="center">
+    {{game.results.name}}
+    <form 
+    <button type="button" value="Checkout"></button>
+  </div>
+  <div class="center">
+    <img src="{{game.results.image.small_url}}" class="center">
+  </div>
+  <div>
+    Description:
+    <div style="margin-left: 20px;">
+      {{game.results.description|markdown}}
+    </div>
+  </div>
+{% endblock %}

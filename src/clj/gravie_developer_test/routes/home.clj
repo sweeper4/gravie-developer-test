@@ -18,6 +18,9 @@
 (defn search-page [request]
   (layout/render request "search.html"))
 
+(defn game-detail-page [request]
+  (layout/render request "game_detail.html" {:game (api/get-game (:query-string request))}))
+
 (defn home-routes []
   [ "" 
    {:middleware [middleware/wrap-csrf
@@ -25,5 +28,6 @@
    ["/" {:get home-page}]
    ["/about" {:get about-page}]
    ["/search" {:get search-page}]
-   ["/games_home" {:get game-home-page}]])
+   ["/games_home" {:get game-home-page}]
+   ["/game_detail" {:get game-detail-page}]])
 
