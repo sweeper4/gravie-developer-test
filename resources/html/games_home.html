@@ -1,0 +1,17 @@
+{% extends "games_base.html" %}
+{% block content %}
+  <div class="content">
+  {{docs|markdown}}
+  </div>
+
+  {% for result in games.results %}
+  <div style="margin-top: 20px;">
+      <img src="{{result.image.thumb_url}}" style="height:50px;">
+      {{result.name}}
+  </div>
+  {% endfor %}
+
+  <div>
+      {{games.results|json}}
+  </div>
+{% endblock %}

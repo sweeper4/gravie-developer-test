@@ -2,6 +2,9 @@
 /lib
 /classes
 /checkouts
+/.calva
+/.lsp
+/.vscode
 pom.xml
 dev-config.edn
 test-config.edn
