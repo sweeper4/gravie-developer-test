@@ -17,10 +17,12 @@
   <div class="center">
     <img src="{{game.results.image.small_url}}" class="center">
   </div>
-  <div>
-    Description:
-    <div style="margin-left: 20px;">
-      {{game.results.description|markdown}}
+  {% if game.results.description %}
+    <div>
+      Description:
+      <div style="margin-left: 20px;">
+        {{game.results.description|markdown}}
+      </div>
     </div>
-  </div>
+  {% endif %}
 {% endblock %}

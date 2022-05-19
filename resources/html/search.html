@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+  <form action="search">
+    <h2>Game Search</h2>
+    <fieldset>
+      <label>Name:</label>
+      <input type="text" name="name" id="name">
+    </fieldset>
+  </form>
+
+  {% for result in games.results %}
+  <a href="/game_detail?guid={{result.guid}}">
+    <div style="margin-top: 20px;">
+      <img src="{{result.image.thumb_url}}" style="height:50px;">
+      {{result.name}}
+    </div>
+  </a>
+  {% endfor %}
+{% endblock %}

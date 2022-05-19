@@ -18,6 +18,11 @@
 (defn search-page [request]
   (layout/render request "search.html"))
 
+(defn search-action [request]
+  (layout/render request "search.html" {:games (if (empty? (:params request))
+                                                   []
+                                                   (api/get-games (:params request)))}))
+
 (defn game-detail-page [request]
   (layout/render request "game_detail.html" {:game (api/get-game (:guid (:params request)))
                                              :checked-out (api/is-checked-out? (:guid (:params request)))}))
@@ -38,7 +43,8 @@
                  middleware/wrap-formats]}
    ["/" {:get home-page}]
    ["/about" {:get about-page}]
-   ["/search" {:get search-page}]
+   ["/search_page" {:get search-page}]
+   ["/search" {:get search-action}]
    ["/games_home" {:get game-home-page}]
    ["/game_detail" {:get game-detail-page}]
    ["/check-out" {:get check-out}]
