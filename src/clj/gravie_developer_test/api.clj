@@ -1,6 +1,5 @@
 (ns gravie-developer-test.api 
   (:require
-   [luminus.http-server :as http]
    [clojure.data.json :as json]
    [org.httpkit.client :as client]))
 

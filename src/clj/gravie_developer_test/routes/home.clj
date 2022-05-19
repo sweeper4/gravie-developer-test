@@ -1,19 +1,11 @@
 (ns gravie-developer-test.routes.home
-  (:require [clojure.java.io :as io]
-            [gravie-developer-test.api :as api]
+  (:require [gravie-developer-test.api :as api]
             [gravie-developer-test.layout :as layout]
             [gravie-developer-test.middleware :as middleware]
             [ring.util.response]))
 
 (defn home-page [request]
-  (layout/render request "home.html" {:docs (-> "docs/docs.md" io/resource slurp)}))
-
-(defn game-home-page [request]
-  (layout/render request "games_home.html" {:docs (-> "docs/game-home.md" io/resource slurp)
-                                            :games (api/get-games)}))
-
-(defn about-page [request]
-  (layout/render request "about.html"))
+  (layout/render request "games_home.html" {:games (api/get-games)}))
 
 (defn search-page [request]
   (layout/render request "search.html"))
@@ -42,10 +34,8 @@
    {:middleware [middleware/wrap-csrf
                  middleware/wrap-formats]}
    ["/" {:get home-page}]
-   ["/about" {:get about-page}]
    ["/search_page" {:get search-page}]
    ["/search" {:get search-action}]
-   ["/games_home" {:get game-home-page}]
    ["/game_detail" {:get game-detail-page}]
    ["/check-out" {:get check-out}]
    ["/check-in" {:get check-in}]])
